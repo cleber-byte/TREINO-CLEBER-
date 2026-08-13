@@ -1,200 +1,57 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scientif Gym Tracker - Personalizado (OCR & Vision)</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Incluindo a biblioteca OCR Tesseract.js para rodar localmente -->
-  <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
-</head>
-<body class="bg-slate-950 text-slate-100 min-h-screen pb-20 font-sans">
+# Scientific Gym Tracker — Protótipo de Experiência do Cliente
 
-  <!-- Header -->
-  <header class="bg-slate-900 border-b border-slate-800 p-4 sticky top-0 z-20 shadow-md">
-    <div class="max-w-md mx-auto flex justify-between items-center">
-      <div>
-        <h1 class="text-lg font-bold text-emerald-400" id="app-title">⚡ Scientific Tracker</h1>
-        <p class="text-xs text-slate-400">Totalmente Offline (OCR Integrado)</p>
-      </div>
-      <div id="rest-timer" class="text-xs font-mono bg-amber-500/10 border border-amber-500/30 text-amber-400 px-3 py-1.5 rounded-lg text-center">
-        Descanso: <span id="timer-val">00:00</span>
-      </div>
-    </div>
-  </header>
+Protótipo navegável (Next.js + Tailwind) com as 5 telas principais do app, para análise/validação de UX. Build já testado e funcionando (`npm run build`).
 
-  <main class="max-w-md mx-auto p-4 space-y-6">
+Telas incluídas:
+1. Onboarding (dados básicos + nível)
+2. Dashboard (resumo do dia)
+3. Treino ao vivo (Workout Player)
+4. Confirmação de bioimpedância (OCR)
+5. Progresso corporal
 
-    <!-- Seleção de Objetivo -->
-    <section class="grid grid-cols-2 gap-2 bg-slate-900 border border-slate-800 p-2 rounded-xl">
-      <button id="goal-hipertrofia" class="goal-btn py-2 text-sm font-medium rounded-lg text-emerald-400 bg-emerald-500/10 border border-emerald-500/30">
-        Hipertrofia
-      </button>
-      <button id="goal-perda" class="goal-btn py-2 text-sm font-medium rounded-lg text-indigo-400 bg-indigo-500/10 border border-indigo-500/30">
-        Perda de Gordura
-      </button>
-    </section>
+## Rodar localmente
 
-    <!-- Módulo 1: Processamento OCR de Bioimpedância -->
-    <section class="bg-slate-900 border border-slate-800 p-4 rounded-xl shadow-lg space-y-3">
-      <h2 class="text-sm font-semibold uppercase tracking-wider text-emerald-400">Processamento de Bioimpedância (OCR)</h2>
-      <p class="text-xs text-slate-400">Suba o laudo (InBody, Avanutri...) para extrair dados concisos localmente.</p>
-      
-      <div class="space-y-3">
-        <label class="block text-xs text-slate-500">Escolha uma imagem clara e reta</label>
-        <input type="file" id="bio-file-input" accept="image/*" class="w-full text-xs text-slate-400 border border-slate-700 bg-slate-950 p-2 rounded-lg">
-        <button id="bio-analyze-btn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-2 rounded-lg text-sm transition">
-          Analisar Laudo
-        </button>
-      </div>
-      
-      <!-- Resultados Reduzidos Dinâmicos -->
-      <div id="bio-results-container" class="bg-slate-950 border border-slate-800 p-3 rounded-lg text-sm text-slate-300 hidden space-y-1">
-        <p class="font-semibold text-emerald-400">Resultados Concisos:</p>
-        <p id="bio-data-reduced"></p>
-      </div>
+```bash
+npm install
+npm run dev
+```
 
-      <button id="bio-generate-workout-btn" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 rounded-lg text-sm transition hidden">
-        Copiar Prompt de Treino Específico
-      </button>
-    </section>
+Abra `http://localhost:3000`.
 
-    <!-- Módulo 2: Análise Nutricional via Foto (Simulação de Interface) -->
-    <section class="bg-slate-900 border border-slate-800 p-4 rounded-xl shadow-lg space-y-3">
-      <h2 class="text-sm font-semibold uppercase tracking-wider text-emerald-400">Análise Nutricional via Foto</h2>
-      <p class="text-xs text-slate-400">Suba a foto do prato. (A análise automática exige um servidor com IA robusta, não incluído neste arquivo offline). Use este prompt no chat para a IA analisar a foto.</p>
-      
-      <div class="space-y-3">
-        <input type="file" id="food-file-input" accept="image/*" class="w-full text-xs text-slate-400 border border-slate-700 bg-slate-950 p-2 rounded-lg">
-        <button id="food-analyze-btn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-2 rounded-lg text-sm transition">
-          Analisar Refeição (Copiar Prompt)
-        </button>
-      </div>
-    </section>
+## Subir para o GitHub
 
-    <!-- Seção de Planilhas de Treino Dinâmico -->
-    <!-- ... (Códigos mantidos) ... -->
+```bash
+cd scientific-gym-tracker
+git init
+git add .
+git commit -m "Protótipo inicial - experiência do cliente"
+git branch -M main
+git remote add origin https://github.com/SEU_USUARIO/scientific-gym-tracker.git
+git push -u origin main
+```
 
-    <!-- Gráfico de Evolução e Registro (Códigos Antigos Mantidos) -->
-    <!-- ... Seções mantidas ... -->
+Se ainda não criou o repositório: vá em [github.com/new](https://github.com/new), crie um repositório vazio (sem README/gitignore, pra não conflitar), copie a URL e use no `git remote add origin`.
 
-  </main>
+## Deploy na Vercel
 
-  <script>
-    // ... Código antigo de logs, chart, timer e setGoal mantido ...
+**Opção A — pelo site (mais simples):**
+1. Acesse [vercel.com/new](https://vercel.com/new)
+2. Conecte sua conta GitHub e selecione o repositório `scientific-gym-tracker`
+3. A Vercel detecta Next.js automaticamente — não precisa mudar nenhuma configuração
+4. Clique em "Deploy"
 
-    // Módulo OCR de Bioimpedância
-    const bioFileInput = document.getElementById('bio-file-input');
-    const bioAnalyzeBtn = document.getElementById('bio-analyze-btn');
-    const bioResultsContainer = document.getElementById('bio-results-container');
-    const bioDataReducedDisplay = document.getElementById('bio-data-reduced');
-    const bioGenerateWorkoutBtn = document.getElementById('bio-generate-workout-btn');
+**Opção B — pela CLI:**
+```bash
+npm install -g vercel
+vercel login
+vercel
+```
+Siga o passo a passo no terminal (ele detecta o framework sozinho). Depois, para produção:
+```bash
+vercel --prod
+```
 
-    let processedBioData = null;
-
-    bioAnalyzeBtn.addEventListener('click', async () => {
-      const file = bioFileInput.files[0];
-      if (!file) {
-        alert("Por favor, selecione uma imagem do laudo de bioimpedância.");
-        return;
-      }
-      
-      bioAnalyzeBtn.textContent = "Processando... (pode demorar)";
-      bioAnalyzeBtn.classList.add('bg-amber-600');
-      bioAnalyzeBtn.disabled = true;
-      bioResultsContainer.classList.add('hidden');
-      bioGenerateWorkoutBtn.classList.add('hidden');
-
-      try {
-        // Tesseract.js OCR local
-        const result = await Tesseract.recognize(file, 'por', { logger: m => console.log(m) });
-        const text = result.data.text;
-        
-        console.log("OCR Texto:", text);
-        
-        // Simulação de extração de dados simplificada via regex.
-        // É MUITO DIFÍCIL extrair tudo perfeitamente devido à variedade de layouts.
-        // Focamos nos dados macro Peso e MME.
-        const pesoMatch = text.match(/(?:Peso Total|Peso)\s*[:]?\s*([\d]+[.,]\d+)/i);
-        const mmeMatch = text.match(/(?:Massa Muscular|MME|Skeletal Muscle Mass)\s*[:]?\s*([\d]+[.,]\d+)/i);
-        
-        if (pesoMatch && mmeMatch) {
-          processedBioData = {
-            peso: pesoMatch[1].replace(',', '.'),
-            mme: mmeMatch[1].replace(',', '.')
-          };
-          bioDataReducedDisplay.innerHTML = `Peso: ${processedBioData.peso} kg | Massa Muscular: ${processedBioData.mme} kg.`;
-          bioResultsContainer.classList.remove('hidden');
-          bioGenerateWorkoutBtn.classList.remove('hidden');
-        } else {
-          alert("Não foi possível extrair dados concisos deste laudo. Tente tirar uma foto melhor ou inserir manualmente no chat.");
-          processedBioData = null;
-        }
-
-      } catch (error) {
-        console.error(error);
-        alert("Ocorreu um erro ao processar a imagem.");
-      } finally {
-        bioAnalyzeBtn.textContent = "Analisar Laudo";
-        bioAnalyzeBtn.classList.remove('bg-amber-600');
-        bioAnalyzeBtn.disabled = false;
-      }
-    });
-
-    // Geração do Prompt Específico para Bioimpedância (baseado nos dados e no prompt anterior)
-    bioGenerateWorkoutBtn.addEventListener('click', () => {
-      if (!processedBioData) return;
-      
-      const promptText = `
-Atue como o Especialista Central de Performance Física e Nutrição Esportiva para um atleta Feminino, 1,73m (Tatiane), focando em Recomposição Corporal Científica.
-
-[DADOS CONCISOS DA BIOIMPEDÂNCIA (Processados Localmente)]
-- Peso: ${processedBioData.peso} kg
-- Massa Muscular (MME): ${processedBioData.mme} kg
-
-Foco Clínico: Com base na bioimpedância Tatiane (metabolismo lento, acúmulo de gordura no tronco/visceral Nível 7), gere um protocolo de treino específico (Full Body 3 dias ou Upper/Lower 4 dias) focado em aumento de LBM e LISS.
-
-Utilize exercícios multiarticulares de alta tensão (ex: Leg Press 45°, Agachamento Taça, Supino com Halteres, Puxada Alta, Remada Curvada, Elevação Pélvica) com Volume Load controlado e RIR 1-2.
-
-Gere uma tabela de Projeção de Evolução para 30 dias (Weight Loss Gordura: -1.5kg, Volume Load: +20%).
-      `.trim();
-      
-      navigator.clipboard.writeText(promptText).then(() => {
-        alert("Prompt de treino específico para sua bioimpedância copiado para a área de transferência!");
-      });
-    });
-
-
-    // Módulo de Nutrição por Foto (Simulação)
-    const foodFileInput = document.getElementById('food-file-input');
-    const foodAnalyzeBtn = document.getElementById('food-analyze-btn');
-
-    foodAnalyzeBtn.addEventListener('click', () => {
-      const file = foodFileInput.files[0];
-      if (!file) {
-        alert("Por favor, selecione uma foto da refeição.");
-        return;
-      }
-
-      const promptText = `
-Atue como o Assistente Central de Performance Física, Fisiologia do Exercício e Nutrição Esportiva (Nível Doutorado, baseado nas diretrizes do ACSM e ISSN).
-
-[SOLICITAÇÃO DE ANÁLISE DE FOTO DE REFEIÇÃO]
-Estou enviando a foto da minha refeição. Execute o seguinte protocolo de visão multimodal:
-
-1. IDENTIFICAÇÃO VISUAL: Liste cada alimento/ingrediente detectado no prato.
-2. ESTIMATIVA DE PORÇÃO: Estime a quantidade em gramas com base em proporções visuais padrão.
-3. MACRONUTRIENTES E CALORIAS: Calcule e exiba em tabela: Alimento | Qtd Est. | Calorias (kcal) | Proteínas Totais (g).
-
-Em seguida, avalie se esta refeição atende ao aporte proteico mínimo por refeição (~0,4g a 0,5g de proteína/kg por refeição, ou seja, ~25-35g total) para máxima síntese proteica.
-      `.trim();
-      
-      navigator.clipboard.writeText(promptText).then(() => {
-        alert("Prompt de análise nutricional de foto copiado! Envie a foto no chat e cole este prompt para análise.");
-      });
-    });
-
-  </script>
-</body>
-</html>
+## Próximos passos sugeridos
+- Conectar dados reais (hoje os campos são estáticos/mockados)
+- Trocar os ícones emoji pela biblioteca de ícones definitiva
+- Adicionar as telas de "máquina ocupada" e "foto de refeição" quando quiser expandir
